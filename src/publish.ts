@@ -23,7 +23,6 @@ const publish = async (
     GOOGLE_REFRESH_TOKEN: refreshToken,
   } = process.env
 
-
   if (typeof extensionId !== 'string') {
     if (nextRelease?.channel == null || !extensionId[nextRelease.channel]) {
       throw new SemanticReleaseError(
