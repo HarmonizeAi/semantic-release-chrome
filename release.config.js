@@ -1,4 +1,11 @@
 module.exports = {
+  branches: [
+    "master",
+    {
+      name: "muti-app",
+      prerelease: true
+    }
+  ],
   analyzeCommits: {
     releaseRules: [
       {

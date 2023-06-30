@@ -23,6 +23,17 @@ const publish = async (
     GOOGLE_REFRESH_TOKEN: refreshToken,
   } = process.env
 
+
+  if (typeof extensionId !== 'string') {
+    if (nextRelease?.channel == null || !extensionId[nextRelease.channel]) {
+      throw new SemanticReleaseError(
+        "Option 'extensionId' was an object, but the current channel was not included in the publish config. Check the README.md for config info.",
+        'ENOEXTENSIONID'
+      )
+    }
+    extensionId = extensionId[nextRelease.channel]
+  }
+
   if (!extensionId) {
     throw new SemanticReleaseError(
       "Option 'extensionId' was not included in the publish config. Check the README.md for config info.",

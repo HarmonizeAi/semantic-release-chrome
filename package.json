@@ -1,5 +1,5 @@
 {
-  "name": "semantic-release-chrome",
+  "name": "@harmonizeai/semantic-release-chrome",
   "version": "0.0.0-development",
   "exports": "./dist/index.js",
   "author": "Gabriel Duarte (https://www.gabrielduarte.dev)",
