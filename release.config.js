@@ -2,7 +2,7 @@ module.exports = {
   branches: [
     "master",
     {
-      name: "muti-app",
+      name: "beta",
       prerelease: true
     }
   ],
