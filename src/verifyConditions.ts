@@ -75,6 +75,7 @@ const verifyConditions = async (
     await webStore.get()
     logger.log('Chrome webstore credentials seem to be valid.')
   } catch (e) {
+    console.error(e)
     mainErrorMsg =
       '\n[semantic-release-chrome] Could not connect to Chrome Web Store with the provided credentials. Please check if they are correct.'
     throw new Error(mainErrorMsg)

@@ -1,6 +1,6 @@
-module.exports = {
-  branches: [
-    "master",
+export default {
+  "branches": [   
+     "master",
     {
       name: "beta",
       prerelease: true
@@ -15,5 +15,5 @@ module.exports = {
       },
     ],
   },
-  
+
 }
