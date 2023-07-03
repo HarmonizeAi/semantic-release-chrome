@@ -13,7 +13,7 @@ const createErrorEnvFile = (param: string, code: string) =>
 
 const verifyConditions = async (
   { extensionId, target }: PluginConfig,
-  { logger }: Context,
+  { logger, nextRelease }: Context,
 ) => {
   if (target === 'local') {
     logger.log('Target option is set to "local". Skipping verification of Chrome store credentials.')
@@ -38,6 +38,16 @@ const verifyConditions = async (
     errors.push(
       createErrorEnvFile('GOOGLE_REFRESH_TOKEN', 'EGOOGLEREFRESHTOKEN'),
     )
+  }
+
+  if (typeof extensionId !== 'string') {
+    if (nextRelease?.channel == null || !extensionId[nextRelease.channel]) {
+      throw new SemanticReleaseError(
+        "Option 'extensionId' was an object, but the current channel was not included in the publish config. Check the README.md for config info.",
+        'ENOEXTENSIONID'
+      )
+    }
+    extensionId = extensionId[nextRelease.channel]
   }
 
   if (!extensionId) {
