@@ -28,9 +28,7 @@ const zipFolder = (
 ) => {
   const zipPath = resolve(asset)
   const output = createWriteStream(zipPath)
-  const archive = archiver('zip', {
-    zlib: { level: 9 },
-  })
+  const archive = archiver('zip')
 
   archive.pipe(output)
 

@@ -58,14 +58,14 @@ const publish = async (
     refreshToken,
   })) as typeof import('chrome-webstore-upload')['default']
 
-  logger.log('Creating zip file...')
-
   const compiledAssetString = template(asset)({
     branch,
     lastRelease,
     nextRelease,
     commits,
   })
+
+  logger.log(`Creating zip file from ${compiledAssetString} ...`)
 
   const zipFile = createReadStream(compiledAssetString)
   const errorMessage = `
