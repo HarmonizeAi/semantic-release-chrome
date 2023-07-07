@@ -9,7 +9,7 @@ import getEsModule from './getEsModule'
 const errorWhitelist = ['PUBLISHED_WITH_FRICTION_WARNING']
 
 const publish = async (
-  { extensionId, target, asset }: PluginConfig,
+  { extensionId, target, asset, noUpload }: PluginConfig,
   { logger, branch, lastRelease, nextRelease, commits }: Context,
 ) => {
   if (target === 'local') {
@@ -45,6 +45,11 @@ const publish = async (
       "Option 'asset' was not included in the publish config. Check the README.md for config info.",
       'ENOASSET',
     )
+  }
+
+  if (noUpload === true) {
+    logger.log(`Skipping upload to chrome store...`)
+    return {}
   }
 
   const chromeWebstoreUpload = (await getEsModule(

@@ -4,7 +4,8 @@ interface PluginConfig {
   asset: string
   extensionId: string | {
     [key: string]: string
-  }
+  },
+  noUpload: boolean | undefined,
   target: 'default' | 'trustedTesters' | 'draft' | 'local'
 }
 
