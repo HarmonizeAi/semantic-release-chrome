@@ -12,7 +12,7 @@ const createErrorEnvFile = (param: string, code: string) =>
   )
 
 const verifyConditions = async (
-  { extensionId, target }: PluginConfig,
+  { extensionId, target, noUpload }: PluginConfig,
   { logger, branch }: Context,
 ) => {
   if (target === 'local') {
@@ -66,6 +66,8 @@ const verifyConditions = async (
 
     throw new AggregateError(errors)
   }
+
+  logger.log(`noUpload: ${noUpload}`)
 
   const chromeWebstoreUpload = (await getEsModule(
     'chrome-webstore-upload',
