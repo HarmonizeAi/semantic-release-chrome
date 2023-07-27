@@ -15,7 +15,7 @@ function genVersionAndVersionName(branch: Context["branch"], version: string) {
   }
 
   const preReleaseVersion = version.replace(`-${branch.name}`, "")
-  const versionName = `${preReleaseVersion} ${branch.name}`
+  const versionName = `${preReleaseVersion} ${branch.channel || branch.name}`
   return { version: preReleaseVersion, version_name: versionName }
 }
 
